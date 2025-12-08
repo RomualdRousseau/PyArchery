@@ -229,7 +229,7 @@ class TableWrapper:
             ImportError: If pandas is not installed.
         """
         if pd is None:
-            raise ImportError("pandas is not installed. Please install it with 'pip install pyjarchery[export]'")
+            raise ImportError("pandas is not installed. Please install it with 'pip install pyjarchery[pandas]'")
         return pd.DataFrame(self.to_pydict())
 
 
