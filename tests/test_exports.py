@@ -1,4 +1,3 @@
-
 import pytest
 
 try:
@@ -30,4 +29,3 @@ def test_to_pandas():
         assert df["Client"].tolist() == ["AAA", "BBB", "BBB", "AAA"]
         assert df["Qty"].tolist() == ["1", "1", "3", "1"]
         assert df["Amount"].tolist() == ["100", "100", "300", "100"]
-

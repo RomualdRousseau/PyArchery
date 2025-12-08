@@ -126,7 +126,6 @@ class HeaderWrapper:
         return None
 
 
-
 try:
     import pandas as pd
 except ImportError:
@@ -227,12 +226,11 @@ class TableWrapper:
 
         Raises:
             ImportError: If pandas is not installed.
+
         """
         if pd is None:
             raise ImportError("pandas is not installed. Please install it with 'pip install pyjarchery[pandas]'")
         return pd.DataFrame(self.to_pydict())
-
-
 
 
 class SheetWrapper:
