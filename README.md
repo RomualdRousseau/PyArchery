@@ -12,6 +12,7 @@ In today's data-driven landscape, navigating the complexities of semi-structured
 By leveraging innovative algorithms and machine learning techniques, Archery offers a solution that gives you control over the data extraction process with tweakable and repeatable settings. It automates the extraction process, saving time and minimizing errors, making it ideal for industries dealing with large volumes of documents.
 
 Key features include:
+
 - **Intelligent Extraction**: Automatically extract structured data from documents.
 - **Layout Analysis**: Understand the physical layout of document elements.
 - **Tag Classification**: Classify document tags using customizable styles (Snake case, Camel case, etc.).
@@ -38,7 +39,6 @@ Here's a simple example of how to use PyArchery to open a document and extract d
 
 ```python
 import pyarchery
-from pyarchery.archery import defines
 
 # Path to your document
 file_path = "path/to/your/document.pdf"
@@ -47,7 +47,7 @@ file_path = "path/to/your/document.pdf"
 # This returns a DocumentWrapper
 with pyarchery.load(
     file_path,
-    hints=[defines.INTELLI_EXTRACT, defines.INTELLI_LAYOUT]
+    hints=[pyarchery.INTELLI_EXTRACT, pyarchery.INTELLI_LAYOUT]
 ) as doc:
     # Access sheets using the pythonic wrapper property
     for sheet in doc.sheets:

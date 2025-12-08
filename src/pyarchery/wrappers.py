@@ -1,7 +1,6 @@
 import tempfile
 from typing import Any, Iterator, List, Optional
 
-import pyarrow
 import pyarrow as pa
 
 from .archery import (
@@ -47,7 +46,7 @@ class CellWrapper:
             str: The value of the cell.
 
         """
-        return self._cell.getValue()
+        return str(self._cell.getValue())
 
     def __repr__(self) -> str:
         """Return a string representation of the cell.
@@ -111,7 +110,7 @@ class HeaderWrapper:
             str: The name of the header.
 
         """
-        return self._header.getName()
+        return str(self._header.getName())
 
     @property
     def tag_value(self) -> Optional[str]:
@@ -125,6 +124,13 @@ class HeaderWrapper:
         if tag and not tag.isUndefined():
             return tag.getValue()
         return None
+
+
+
+try:
+    import pandas as pd
+except ImportError:
+    pd = None
 
 
 class TableWrapper:
@@ -201,7 +207,7 @@ class TableWrapper:
         with tempfile.NamedTemporaryFile() as temp:
             file_path = temp.name
             self._table.to_arrow(file_path)
-            with pyarrow.ipc.open_stream(file_path) as reader:
+            with pa.ipc.open_stream(file_path) as reader:
                 return reader.read_all()
 
     def to_csv(self, path: str):
@@ -212,6 +218,21 @@ class TableWrapper:
 
         """
         self._table.to_csv(path)
+
+    def to_pandas(self):
+        """Convert the table to a pandas DataFrame.
+
+        Returns:
+            pd.DataFrame: A pandas DataFrame representation of the table.
+
+        Raises:
+            ImportError: If pandas is not installed.
+        """
+        if pd is None:
+            raise ImportError("pandas is not installed. Please install it with 'pip install pyjarchery[export]'")
+        return pd.DataFrame(self.to_pydict())
+
+
 
 
 class SheetWrapper:
