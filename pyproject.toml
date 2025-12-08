@@ -23,6 +23,8 @@ dev = [
     "mkdocstrings[python]>=0.24.0",
     "pytest>=9.0.1",
 ]
+pandas = ["pandas>=2.3.3"]
+
 
 [build-system]
 requires = ["hatchling"]
