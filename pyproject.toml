@@ -1,6 +1,6 @@
 [project]
 name = "pyjarchery"
-version = "0.1.12"
+version = "0.1.13"
 description = "Python binding to Java Archery Framework"
 readme = "README.md"
 authors = [
