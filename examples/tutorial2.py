@@ -31,4 +31,4 @@ with pyarchery.load(
     for sheet in doc.sheets:
         table = sheet.table
         if table:
-            print(table.to_arrow().to_pandas().to_markdown())
+            print(table.to_pandas().to_markdown())
