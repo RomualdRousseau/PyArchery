@@ -1,7 +1,7 @@
 import pytest
 
 import pyarchery
-from pyarchery.setup_java import is_jvm_started, start_java_archery_framework
+from pyarchery.jvm import is_jvm_started, start_java_archery_framework
 
 
 def test_jvm_initialization():

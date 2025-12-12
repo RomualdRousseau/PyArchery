@@ -1,6 +1,6 @@
 import pytest
 
-from pyarchery.setup_java import start_java_archery_framework
+from pyarchery.jvm import start_java_archery_framework
 
 start_java_archery_framework()
 

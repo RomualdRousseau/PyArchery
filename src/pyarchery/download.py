@@ -2,35 +2,19 @@ import hashlib
 import logging
 import os
 import platform
-import shutil
 import sys
 import tempfile
-import threading
 from functools import cache
-from importlib import resources
-from pathlib import Path
 from typing import Any, Optional
 
-import jpype
-import jpype.imports
 import requests
 from requests.adapters import HTTPAdapter
 from tqdm import tqdm
 from urllib3.util.retry import Retry
 
-from .config import (
-    FETCH_ALL_NATIVE,
-    JARS_HOME,
-    MAVEN_SNAPSHOT_URL,
-    MAVEN_URL,
-    REQUIRE_CHECKSUMS,
-    SKIP_JVM_START,
-)
-from .version import __version__
+from .config import FETCH_ALL_NATIVE, MAVEN_SNAPSHOT_URL, MAVEN_URL, REQUIRE_CHECKSUMS
 
-logger = logging.getLogger(__package__)
-_jvm_lock: threading.Lock = threading.Lock()
-_jvm_started: bool = False
+logger = logging.getLogger(__name__)
 
 
 def _build_http_session() -> requests.Session:
@@ -46,7 +30,6 @@ def _build_http_session() -> requests.Session:
     session = requests.Session()
     session.mount("http://", adapter)
     session.mount("https://", adapter)
-    # requests uses environment proxies by default; keep that behavior
     return session
 
 
@@ -54,10 +37,7 @@ _SESSION = _build_http_session()
 
 
 def _load_checksums(checksum_path: str | os.PathLike[str]) -> dict[str, str]:
-    """Load checksums from a file if present.
-
-    The file should contain lines formatted as "<sha256> <filename>".
-    """
+    """Load checksums from a file if present."""
     checksum_path = os.fspath(checksum_path)
     checksums: dict[str, str] = {}
     if not os.path.exists(checksum_path):
@@ -194,85 +174,16 @@ def _install_one_dependency(
     _download_with_verification(url, target_path, expected_checksum)
 
 
-def _install_all_dependencies(
+def install_all_dependencies(
     jars_path: str | os.PathLike[str],
     deps_path: str | os.PathLike[str],
     checksum_path: str | os.PathLike[str],
 ) -> None:
     """Install all dependencies listed in the deps file into jars_path."""
     os.makedirs(jars_path, exist_ok=True)
-    checksum_map = _get_checksums(checksum_path)
+    checksum_map = _get_checksums(os.fspath(checksum_path))
     with open(deps_path, "r") as file:
         dependencies = file.readlines()
         pbar = tqdm(dependencies, desc="Loading dependencies")
         for dep in pbar:
             _install_one_dependency(jars_path, dep.rstrip(), checksum_map, pbar)
-
-
-def start_java_archery_framework(force: bool = False) -> None:
-    """Start the JVM if needed.
-
-    Startup is guarded by a process-wide lock to prevent racing imports and is
-    lazy by default (called explicitly by consumers). Set the environment
-    variable ``PYARCHERY_SKIP_JVM_START=1`` to skip startup entirely—useful for
-    environments without network access or where Java is managed externally.
-    """
-    if SKIP_JVM_START and not force:
-        logger.info("PYARCHERY_SKIP_JVM_START is set; skipping JVM startup")
-        return
-
-    with _jvm_lock:
-        global _jvm_started
-        if _jvm_started and jpype.isJVMStarted():
-            logger.debug("JVM already started; nothing to do")
-            return
-
-        if jpype.isJVMStarted():
-            _jvm_started = True
-            logger.debug("JVM already running outside PyArchery; marking as started")
-            return
-
-        package_path = resources.files(str(__package__))
-        jars_root_env = JARS_HOME
-        if jars_root_env:
-            # Allow sharing/downloading jars in a custom cache to avoid bloating wheels.
-            jars_root = Path(os.path.expandvars(os.path.expanduser(jars_root_env))).resolve()
-            jars_path = jars_root / f"{__package__}.jars"
-            logger.info("Using custom JAR cache at %s", jars_path)
-        else:
-            jars_path = Path(package_path.parent / f"{__package__}.jars")
-
-        libs_path = Path(package_path.parent / f"{__package__}.libs")
-        deps_path = Path(package_path / "dependencies")
-        checksum_path = Path(package_path / "dependencies.sha256")
-
-        options = [
-            "-ea",
-            "--add-opens=java.base/java.nio=ALL-UNNAMED",
-            "--enable-native-access=ALL-UNNAMED",
-        ]
-
-        classpath = [f"{jars_path}/*", f"{libs_path}/*"]
-
-        logger.info("Preparing to start JVM")
-        logger.debug("JVM options: %s", options)
-        logger.debug("JVM classpath: %s", classpath)
-
-        expected_jar = jars_path / f"archery-{__version__}.jar"
-        if os.path.exists(jars_path) and not os.path.exists(expected_jar):
-            logger.warning(
-                f"Version mismatch or missing jar. Expected archery-{__version__}.jar. Reinstalling dependencies."
-            )
-            shutil.rmtree(jars_path)
-
-        if not os.path.exists(jars_path):
-            _install_all_dependencies(jars_path, deps_path, checksum_path)
-
-        jpype.startJVM(*options, classpath=classpath)
-        _jvm_started = True
-        logger.warning("JAVA ARCHERY FRAMEWORK %s LOADED", __version__)
-
-
-def is_jvm_started() -> bool:
-    """Return True if the JVM is running."""
-    return jpype.isJVMStarted()

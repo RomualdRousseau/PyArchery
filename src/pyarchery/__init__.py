@@ -6,7 +6,7 @@ from __future__ import annotations
 import importlib
 from typing import TYPE_CHECKING
 
-from .setup_java import is_jvm_started, start_java_archery_framework
+from .jvm import is_jvm_started, start_java_archery_framework
 
 if TYPE_CHECKING:
     from .archery import (  # pragma: no cover
@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 _ARCHERY_MODULE = None
-_WRAPPERS_MODULE = None
+_DOCUMENT_WRAPPER = None
 
 
 def _archery():
@@ -39,27 +39,26 @@ def _archery():
     return _ARCHERY_MODULE
 
 
-def _wrappers():
-    """Lazily import wrappers (depends on archery being loaded)."""
-    global _WRAPPERS_MODULE
-    if _WRAPPERS_MODULE is None:
-        _archery()
-        _WRAPPERS_MODULE = importlib.import_module(".wrappers", __name__)
-    return _WRAPPERS_MODULE
+def _document_wrapper():
+    """Lazily import DocumentWrapper without exposing wrappers via __getattr__."""
+    global _DOCUMENT_WRAPPER
+    if _DOCUMENT_WRAPPER is None:
+        _DOCUMENT_WRAPPER = importlib.import_module(".wrappers", __name__).DocumentWrapper
+    return _DOCUMENT_WRAPPER
 
 
-def model_from_path(path: str) -> Model:
-    """Create a ModelBuilder from a file path."""
+def model_from_path(path: str) -> ModelBuilder:
+    """Create a ModelBuilder from a file path (starts JVM on first use)."""
     return _archery().ModelBuilder().fromPath(path)
 
 
-def model_from_url(url: str) -> Model:
-    """Create a ModelBuilder from a URL."""
+def model_from_url(url: str) -> ModelBuilder:
+    """Create a ModelBuilder from a URL (starts JVM and fetches remote model)."""
     return _archery().ModelBuilder().fromURL(url)
 
 
-def model_from_json(data: str) -> Model:
-    """Create a ModelBuilder from a JSON string."""
+def model_from_json(data: str) -> ModelBuilder:
+    """Create a ModelBuilder from a JSON string (starts JVM on first use)."""
     return _archery().ModelBuilder().fromJSON(data)
 
 
@@ -71,10 +70,8 @@ def load(
     recipe=None,
     tag_case: str | None = None,
 ) -> DocumentWrapper:
-    """Load a document and create a DocumentWrapper."""
+    """Load a document and create a DocumentWrapper (starts JVM on first use)."""
     archery = _archery()
-    wrappers = _wrappers()
-
     doc = archery.DocumentFactory.createInstance(file_path, encoding)
     if model:
         doc.setModel(model)
@@ -87,7 +84,7 @@ def load(
             doc.getTagClassifier().setTagStyle(archery.SNAKE)
         elif tag_case == "CAMEL":
             doc.getTagClassifier().setTagStyle(archery.CAMEL)
-    return wrappers.DocumentWrapper(doc)
+    return _document_wrapper()(doc)
 
 
 def __getattr__(name: str):
@@ -95,8 +92,7 @@ def __getattr__(name: str):
     if hasattr(archery, name):
         return getattr(archery, name)
     if name == "DocumentWrapper":
-        _archery()
-        return _wrappers().DocumentWrapper
+        return _document_wrapper()
     raise AttributeError(name)
 
 
