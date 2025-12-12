@@ -20,15 +20,20 @@ def get_model():
     return builder.setEntityList(entities).setPatternMap(patterns).setTableParser(parser).build()
 
 
-with pyarchery.load(
-    FILE_PATH,
-    encoding=FILE_ENCODING,
-    model=get_model(),
-    hints=[pyarchery.INTELLI_LAYOUT, pyarchery.INTELLI_TIME],
-    recipe=["sheet.setCapillarityThreshold(0)"],
-    tag_case="SNAKE",
-) as doc:
-    for sheet in doc.sheets:
-        table = sheet.table
-        if table:
-            print(table.to_pandas().to_markdown())
+def main():
+    with pyarchery.load(
+        FILE_PATH,
+        encoding=FILE_ENCODING,
+        model=get_model(),
+        hints=[pyarchery.INTELLI_LAYOUT, pyarchery.INTELLI_TIME],
+        recipe=["sheet.setCapillarityThreshold(0)"],
+        tag_case="SNAKE",
+    ) as doc:
+        for sheet in doc.sheets:
+            table = sheet.table
+            if table:
+                print(table.to_pandas().to_markdown())
+
+
+if __name__ == "__main__":
+    main()

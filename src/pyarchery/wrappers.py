@@ -1,4 +1,6 @@
+import os
 import tempfile
+from pathlib import Path
 from typing import Any, Iterator, List, Optional
 
 import pyarrow as pa
@@ -209,14 +211,14 @@ class TableWrapper:
             with pa.ipc.open_stream(file_path) as reader:
                 return reader.read_all()
 
-    def to_csv(self, path: str):
+    def to_csv(self, path: str | os.PathLike[str]):
         """Write the table to a CSV file.
 
         Args:
-            path (str): The path to write the CSV file to.
+            path (str | os.PathLike): The path to write the CSV file to.
 
         """
-        self._table.to_csv(path)
+        self._table.to_csv(str(Path(path)))
 
     def to_pandas(self):
         """Convert the table to a pandas DataFrame.
