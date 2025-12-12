@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib
+import os
 from typing import TYPE_CHECKING
 
 from .jvm import is_jvm_started, start_java_archery_framework
@@ -47,9 +48,9 @@ def _document_wrapper():
     return _DOCUMENT_WRAPPER
 
 
-def model_from_path(path: str) -> ModelBuilder:
+def model_from_path(path: str | os.PathLike[str]) -> ModelBuilder:
     """Create a ModelBuilder from a file path (starts JVM on first use)."""
-    return _archery().ModelBuilder().fromPath(path)
+    return _archery().ModelBuilder().fromPath(os.fspath(path))
 
 
 def model_from_url(url: str) -> ModelBuilder:
@@ -63,7 +64,7 @@ def model_from_json(data: str) -> ModelBuilder:
 
 
 def load(
-    file_path: str,
+    file_path: str | os.PathLike[str],
     encoding: str = "UTF-8",
     model=None,
     hints=None,
@@ -72,7 +73,12 @@ def load(
 ) -> DocumentWrapper:
     """Load a document and create a DocumentWrapper (starts JVM on first use)."""
     archery = _archery()
-    doc = archery.DocumentFactory.createInstance(file_path, encoding)
+    file_path_str = os.fspath(file_path)
+    if not os.path.isfile(file_path_str):
+        raise FileNotFoundError(f"Document not found: {file_path_str}")
+    if not os.access(file_path_str, os.R_OK):
+        raise PermissionError(f"Document is not readable: {file_path_str}")
+    doc = archery.DocumentFactory.createInstance(file_path_str, encoding)
     if model:
         doc.setModel(model)
     if hints:

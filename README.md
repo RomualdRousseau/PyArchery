@@ -66,6 +66,20 @@ For comprehensive documentation, tutorials, and API references, please visit:
 - **PyArchery Documentation**: [https://romualdrousseau.github.io/PyArchery/](https://romualdrousseau.github.io/PyArchery/)
 - **Java Archery Framework**: [https://github.com/RomualdRousseau/Archery](https://github.com/RomualdRousseau/Archery)
 
+## Configuration
+
+You can tune runtime behavior via environment variables:
+
+- `PYARCHERY_MAVEN_URL` / `PYARCHERY_MAVEN_SNAPSHOT_URL`: Override Maven base URLs for downloading Java dependencies.
+- `PYARCHERY_JARS_HOME`: Directory where downloaded JARs are cached (default is inside the package). Useful to share a cache across virtual environments or reduce wheel size by keeping jars out of the wheel.
+- `PYARCHERY_SKIP_JVM_START`: Set to `1` to skip JVM startup (for dry runs or environments where Java is managed externally).
+- `PYARCHERY_REQUIRE_CHECKSUMS`: Set to `1` to enforce checksum verification of downloaded JARs (fails if checksum file is missing or mismatched).
+- `PYARCHERY_FETCH_ALL_NATIVE`: Set to `1` to download all native classifiers instead of filtering by the current platform.
+
+### Wheel slimming
+
+The default build excludes bundled JARs; on first use PyArchery downloads only the platform-matching artifacts. To avoid repeated downloads across projects or CI runs, set `PYARCHERY_JARS_HOME` to a shared cache directory. If you need a “fat” wheel that includes JARs, consider providing a separate distribution or optional extra that re-enables JAR bundling, while keeping the default wheel lightweight.
+
 ## Contribute
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -55,6 +55,16 @@ def test_load_and_wrappers():
             for header in table.headers:
                 _ = header.tag_value
 
+            records = table.to_records()
+            assert isinstance(records, list)
+            assert len(records) == arrow_table.num_rows
+            iter_rows = list(table.iter_rows())
+            assert iter_rows == records
+
+            arrow_memory = table.to_arrow_memory()
+            assert arrow_memory.num_rows == arrow_table.num_rows
+            assert arrow_memory.num_columns == arrow_table.num_columns
+
             output_csv = DATA_DIR / f"test_output_{filename}.csv"
             try:
                 table.to_csv(output_csv)
