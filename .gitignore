@@ -20,3 +20,4 @@ saved/
 pyarchery.jars/
 site/
 .env
+.coverage

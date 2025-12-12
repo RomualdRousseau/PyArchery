@@ -1,13 +1,14 @@
-import jpype
 import pytest
 
-from pyarchery.setup_java import start_java_archery_framework
+import pyarchery
+from pyarchery.jvm import is_jvm_started, start_java_archery_framework
 
 
 def test_jvm_initialization():
     """Test that the JVM starts correctly and is idempotent."""
-    # Ensure JVM is started (it might be started by other tests or __init__)
-    assert jpype.isJVMStarted()
+    # Explicitly start to ensure lazy startup is exercised
+    start_java_archery_framework()
+    assert is_jvm_started()
 
 
 def test_jvm_idempotency():
@@ -18,5 +19,26 @@ def test_jvm_idempotency():
         start_java_archery_framework()
     except Exception as e:
         pytest.fail(f"start_java_archery_framework raised exception on repeated call: {e}")
+    assert is_jvm_started()
 
-    assert jpype.isJVMStarted()
+
+def test_dunder_dir_contains_expected_entries():
+    names = pyarchery.__dir__()
+    assert "DocumentWrapper" in names
+    assert "load" in names
+    assert "model_from_url" in names
+
+
+def test_dunder_getattr_delegates_to_archery(monkeypatch):
+    sentinel = object()
+
+    class FakeArchery:
+        def __init__(self):
+            self.value = sentinel
+
+    monkeypatch.setattr(pyarchery, "_ARCHERY_MODULE", FakeArchery(), raising=False)
+    monkeypatch.setattr(pyarchery, "_archery", lambda: pyarchery._ARCHERY_MODULE)
+
+    assert pyarchery.__getattr__("value") is sentinel
+    with pytest.raises(AttributeError):
+        pyarchery.__getattr__("does_not_exist")

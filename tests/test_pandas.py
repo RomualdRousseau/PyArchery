@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 
 try:
@@ -11,7 +13,7 @@ import pyarchery
 @pytest.mark.skipif(pd is None, reason="pandas not installed")
 def test_to_pandas():
     """Test converting a table to a pandas DataFrame."""
-    file_path = "examples/data/document with simple table.xlsx"
+    file_path = Path(__file__).parent / "data" / "document with simple table.xlsx"
     with pyarchery.load(file_path, hints=[pyarchery.INTELLI_EXTRACT]) as doc:
         sheet = next(doc.sheets)
         table = sheet.table

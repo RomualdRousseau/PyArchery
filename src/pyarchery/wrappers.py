@@ -1,5 +1,7 @@
+import os
 import tempfile
-from typing import Any, Iterator, List, Optional
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, Iterator, List, Optional
 
 import pyarrow as pa
 
@@ -24,6 +26,34 @@ from .archery import (
 from .archery import (
     TableGraph as JTableGraph,
 )
+
+if TYPE_CHECKING:
+    from typing import Protocol
+
+    class _JTagProtocol(Protocol):
+        def getValue(self) -> str: ...  # noqa: N802
+        def isUndefined(self) -> bool: ...  # noqa: N802
+
+    class _JHeaderProtocol(Protocol):
+        def getName(self) -> str: ...  # noqa: N802
+        def getTag(self) -> _JTagProtocol: ...  # noqa: N802
+
+    class _JRowProtocol(Protocol):
+        def cells(self) -> list[JCell]: ...  # noqa: N802
+
+    class _JTableProtocol(Protocol):
+        def headers(self) -> list[JHeader]: ...  # noqa: N802
+        def rows(self) -> list[JRow]: ...  # noqa: N802
+        def to_arrow(self, path: str) -> None: ...  # noqa: N802
+        def to_csv(self, path: str) -> None: ...  # noqa: N802
+
+    class _JTableGraphProtocol(Protocol):
+        """Minimal protocol for the TableGraph Java object."""
+
+    class _JSheetProtocol(Protocol):
+        def getTable(self): ...  # noqa: N802
+        def getTableGraph(self) -> _JTableGraphProtocol | None: ...  # noqa: N802
+        def addSheetListener(self, listener: Any): ...  # noqa: N802
 
 
 class CellWrapper:
@@ -143,6 +173,7 @@ class TableWrapper:
 
         """
         self._table = table
+        self._header_cache: Optional[list[HeaderWrapper]] = None
 
     @property
     def headers(self) -> List[HeaderWrapper]:
@@ -152,7 +183,9 @@ class TableWrapper:
             List[HeaderWrapper]: A list of HeaderWrapper instances.
 
         """
-        return [HeaderWrapper(h) for h in self._table.headers()]
+        if self._header_cache is None:
+            self._header_cache = [HeaderWrapper(h) for h in self._table.headers()]
+        return self._header_cache
 
     @property
     def rows(self) -> Iterator[RowWrapper]:
@@ -209,14 +242,43 @@ class TableWrapper:
             with pa.ipc.open_stream(file_path) as reader:
                 return reader.read_all()
 
-    def to_csv(self, path: str):
+    def to_arrow_memory(self) -> pa.Table:
+        """Convert the table to a PyArrow Table using an in-memory stream."""
+        with tempfile.NamedTemporaryFile() as temp:
+            file_path = temp.name
+            self._table.to_arrow(file_path)
+            with pa.memory_map(file_path, "r") as source:
+                with pa.ipc.open_stream(source) as reader:
+                    return reader.read_all()
+
+    def to_records(self) -> list[dict[str, Any]]:
+        """Convert the table to a list of row dictionaries."""
+        headers = self.header_names
+        records: list[dict[str, Any]] = []
+        for row in self.rows:
+            cells = row.cells
+            records.append({h: cells[i].value if i < len(cells) else None for i, h in enumerate(headers)})
+        return records
+
+    def iter_rows(self) -> Iterator[dict[str, Any]]:
+        """Iterate over rows as dictionaries."""
+        headers = self.header_names
+        for row in self.rows:
+            cells = row.cells
+            yield {h: cells[i].value if i < len(cells) else None for i, h in enumerate(headers)}
+
+    def to_csv(self, path: str | os.PathLike[str]):
         """Write the table to a CSV file.
 
         Args:
-            path (str): The path to write the CSV file to.
+            path (str | os.PathLike): The path to write the CSV file to.
 
         """
-        self._table.to_csv(path)
+        target = Path(path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.exists() and not os.access(target, os.W_OK):
+            raise PermissionError(f"Cannot write to CSV at {target}")
+        self._table.to_csv(str(target))
 
     def to_pandas(self):
         """Convert the table to a pandas DataFrame.
@@ -258,16 +320,11 @@ class SheetWrapper:
             return TableWrapper(opt_table.get())
         return None
 
-    def get_table_graph(self) -> Optional[JTableGraph]:
-        """Get the table graph from the sheet.
-
-        Returns:
-            Optional[JTableGraph]: The Java TableGraph if present, None otherwise.
-
-        """
+    def get_table_graph(self) -> Optional["TableGraphWrapper"]:
+        """Get the table graph from the sheet."""
         opt_table_graph = self._sheet.getTableGraph()
         if opt_table_graph.isPresent():
-            return opt_table_graph.get()
+            return TableGraphWrapper(opt_table_graph.get())
         return None
 
     def add_sheet_listener(self, listener: Any):
@@ -278,6 +335,18 @@ class SheetWrapper:
 
         """
         self._sheet.addSheetListener(listener)
+
+
+class TableGraphWrapper:
+    """Wrapper for the Java TableGraph class."""
+
+    def __init__(self, graph: JTableGraph):
+        self._graph = graph
+
+    @property
+    def java(self) -> JTableGraph:
+        """Access the underlying Java TableGraph object."""
+        return self._graph
 
 
 class DocumentWrapper:
