@@ -1,6 +1,7 @@
 set dotenv-load
 
 APP_NAME := "pyarchery"
+ARCHERY_VERSION := "1.0.45"
 
 # Default recipe to display help
 default:
@@ -52,6 +53,7 @@ security:
 # Clean build artifacts and cache
 clean:
     uvx pyclean . --debris
+    rm -rf src/pyarchery.jars
 
 # Build the package
 build:
@@ -103,3 +105,11 @@ doc-deploy:
 # Deploy to PyPi
 deploy:
   uvx twine upload dist/*
+
+generate-deps-step1:
+  rm -f src/pyarchery/dependencies.sha256
+  echo '__version__ = "{{ARCHERY_VERSION}}"' > src/pyarchery/version.py
+  cat ../Archery/dependencies.txt | sed -E 's/1.0-SNAPSHOT/{{ARCHERY_VERSION}}/' > src/pyarchery/dependencies
+
+generate-deps-step2:
+  bash generate_checksums.sh
