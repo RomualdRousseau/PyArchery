@@ -1,7 +1,7 @@
 set dotenv-load
 
 APP_NAME := "pyarchery"
-ARCHERY_VERSION := "1.0.45"
+ARCHERY_VERSION := "1.0.46"
 
 # Default recipe to display help
 default:
