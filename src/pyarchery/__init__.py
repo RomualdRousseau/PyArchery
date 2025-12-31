@@ -22,13 +22,14 @@ if TYPE_CHECKING:
         LayexTableParser,
         Model,
         ModelBuilder,
+        SheetEvent,
         TableGraph,
     )
-    from .wrappers import DocumentWrapper  # pragma: no cover
+    from .wrappers import DocumentWrapper, SheetWrapper  # pragma: no cover
 
 
 _ARCHERY_MODULE = None
-_DOCUMENT_WRAPPER = None
+_WRAPPERS_MODULE = None
 
 
 def _archery():
@@ -40,12 +41,12 @@ def _archery():
     return _ARCHERY_MODULE
 
 
-def _document_wrapper():
+def _wrappers():
     """Lazily import DocumentWrapper without exposing wrappers via __getattr__."""
-    global _DOCUMENT_WRAPPER
-    if _DOCUMENT_WRAPPER is None:
-        _DOCUMENT_WRAPPER = importlib.import_module(".wrappers", __name__).DocumentWrapper
-    return _DOCUMENT_WRAPPER
+    global _WRAPPERS_MODULE
+    if _WRAPPERS_MODULE is None:
+        _WRAPPERS_MODULE = importlib.import_module(".wrappers", __name__)
+    return _WRAPPERS_MODULE
 
 
 def model_from_path(path: str | os.PathLike[str]) -> ModelBuilder:
@@ -90,15 +91,16 @@ def load(
             doc.getTagClassifier().setTagStyle(archery.SNAKE)
         elif tag_case == "CAMEL":
             doc.getTagClassifier().setTagStyle(archery.CAMEL)
-    return _document_wrapper()(doc)
+    return _wrappers().DocumentWrapper(doc)
 
 
 def __getattr__(name: str):
     archery = _archery()
     if hasattr(archery, name):
         return getattr(archery, name)
-    if name == "DocumentWrapper":
-        return _document_wrapper()
+    wrappers = _wrappers()
+    if hasattr(wrappers, name):
+        return getattr(wrappers, name)
     raise AttributeError(name)
 
 
