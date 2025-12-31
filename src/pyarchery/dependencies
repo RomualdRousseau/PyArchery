@@ -1,229 +1,229 @@
-   ch.qos.reload4j:reload4j:jar:1.2.22
-   com.fasterxml.jackson.core:jackson-annotations:jar:2.19.1
-   com.fasterxml.jackson.core:jackson-core:jar:2.20.1
-   com.fasterxml.jackson.core:jackson-databind:jar:2.20.1
-   com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.20.1
-   com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.20.1
-   com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.12.7
-   com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.12.7
-   com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.12.7
-   com.fasterxml.woodstox:woodstox-core:jar:5.4.0
-   com.github.albfernandez:javadbf:jar:1.14.1
-   com.github.jai-imageio:jai-imageio-core:jar:1.4.0
-   com.github.jai-imageio:jai-imageio-jpeg2000:jar:1.4.0
-   com.github.luben:zstd-jni:jar:1.5.7-3
-   com.github.romualdrousseau:archery-commons:jar:1.0.45
-   com.github.romualdrousseau:archery-csv:jar:1.0.45
-   com.github.romualdrousseau:archery-excel:jar:1.0.45
-   com.github.romualdrousseau:archery-layex-parser:jar:1.0.45
-   com.github.romualdrousseau:archery-net-classifier:jar:1.0.45
-   com.github.romualdrousseau:archery-pdf:jar:1.0.45
-   com.github.romualdrousseau:archery-parquet:jar:1.0.45
-   com.github.romualdrousseau:archery-dbf:jar:1.0.45
-   com.github.romualdrousseau:archery:jar:1.0.45
-   com.github.virtuald:curvesapi:jar:1.08
-   com.google.code.findbugs:jsr305:jar:3.0.2
-   com.google.code.gson:gson:jar:2.13.2
-   com.google.errorprone:error_prone_annotations:jar:2.44.0
-   com.google.flatbuffers:flatbuffers-java:jar:1.12.0
-   com.google.guava:failureaccess:jar:1.0.3
-   com.google.guava:guava:jar:33.5.0-jre
-   com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava
-   com.google.j2objc:j2objc-annotations:jar:3.1
-   com.google.protobuf:protobuf-java:jar:4.33.1
-   com.google.re2j:re2j:jar:1.1
-   com.kjetland:mbknor-jackson-jsonschema_2.12:jar:1.0.34
-   com.knuddels:jtokkit:jar:0.5.1
-   com.nimbusds:nimbus-jose-jwt:jar:10.6
-   com.squareup.okhttp3:okhttp:jar:4.12.0
-   com.squareup.okio:okio-jvm:jar:3.16.3
-   com.squareup.okio:okio:jar:3.16.3
-   com.squareup.retrofit2:adapter-rxjava2:jar:2.9.0
-   com.squareup.retrofit2:converter-jackson:jar:2.9.0
-   com.squareup.retrofit2:retrofit:jar:2.9.0
-   com.sun.jersey:jersey-client:jar:1.19.4
-   com.sun.jersey:jersey-core:jar:1.19.4
-   com.sun.jersey:jersey-servlet:jar:1.19.4
-   com.theokanning.openai-gpt3-java:api:jar:0.18.2
-   com.theokanning.openai-gpt3-java:client:jar:0.18.2
-   com.theokanning.openai-gpt3-java:service:jar:0.18.2
-   com.zaxxer:SparseBitSet:jar:1.3
-   commons-cli:commons-cli:jar:1.11.0
-   commons-codec:commons-codec:jar:1.20.0
-   commons-io:commons-io:jar:2.21.0
-   commons-logging:commons-logging:jar:1.3.5
-   commons-net:commons-net:jar:3.9.0
-   commons-pool:commons-pool:jar:1.6
-   dnsjava:dnsjava:jar:3.6.3
-   fr.neolegal:tabula:jar:1.0.12
-   io.airlift:aircompressor:jar:2.0.2
-   io.dropwizard.metrics:metrics-core:jar:3.2.4
-   io.github.classgraph:classgraph:jar:4.8.184
-   io.netty:netty-all:jar:4.2.8.Final
-   io.netty:netty-buffer:jar:4.2.8.Final
-   io.netty:netty-codec-base:jar:4.2.8.Final
-   io.netty:netty-codec-classes-quic:jar:4.2.8.Final
-   io.netty:netty-codec-compression:jar:4.2.8.Final
-   io.netty:netty-codec-dns:jar:4.2.8.Final
-   io.netty:netty-codec-haproxy:jar:4.2.8.Final
-   io.netty:netty-codec-http2:jar:4.2.8.Final
-   io.netty:netty-codec-http3:jar:4.2.8.Final
-   io.netty:netty-codec-http:jar:4.2.8.Final
-   io.netty:netty-codec-marshalling:jar:4.2.8.Final
-   io.netty:netty-codec-memcache:jar:4.2.8.Final
-   io.netty:netty-codec-mqtt:jar:4.2.8.Final
-   io.netty:netty-codec-native-quic:jar:linux-aarch_64:4.2.8.Final
-   io.netty:netty-codec-native-quic:jar:linux-x86_64:4.2.8.Final
-   io.netty:netty-codec-native-quic:jar:osx-aarch_64:4.2.8.Final
-   io.netty:netty-codec-native-quic:jar:osx-x86_64:4.2.8.Final
-   io.netty:netty-codec-native-quic:jar:windows-x86_64:4.2.8.Final
-   io.netty:netty-codec-protobuf:jar:4.2.8.Final
-   io.netty:netty-codec-redis:jar:4.2.8.Final
-   io.netty:netty-codec-smtp:jar:4.2.8.Final
-   io.netty:netty-codec-socks:jar:4.2.8.Final
-   io.netty:netty-codec-stomp:jar:4.2.8.Final
-   io.netty:netty-codec-xml:jar:4.2.8.Final
-   io.netty:netty-codec:jar:4.2.8.Final
-   io.netty:netty-common:jar:4.2.8.Final
-   io.netty:netty-handler-proxy:jar:4.2.8.Final
-   io.netty:netty-handler-ssl-ocsp:jar:4.2.8.Final
-   io.netty:netty-handler:jar:4.2.8.Final
-   io.netty:netty-resolver-dns-classes-macos:jar:4.2.8.Final
-   io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.2.8.Final
-   io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.2.8.Final
-   io.netty:netty-resolver-dns:jar:4.2.8.Final
-   io.netty:netty-resolver:jar:4.2.8.Final
-   io.netty:netty-transport-classes-epoll:jar:4.2.8.Final
-   io.netty:netty-transport-classes-io_uring:jar:4.2.8.Final
-   io.netty:netty-transport-classes-kqueue:jar:4.2.8.Final
-   io.netty:netty-transport-native-epoll:jar:4.2.8.Final
-   io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.2.8.Final
-   io.netty:netty-transport-native-epoll:jar:linux-riscv64:4.2.8.Final
-   io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.2.8.Final
-   io.netty:netty-transport-native-io_uring:jar:linux-aarch_64:4.2.8.Final
-   io.netty:netty-transport-native-io_uring:jar:linux-riscv64:4.2.8.Final
-   io.netty:netty-transport-native-io_uring:jar:linux-x86_64:4.2.8.Final
-   io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.2.8.Final
-   io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.2.8.Final
-   io.netty:netty-transport-native-unix-common:jar:4.2.8.Final
-   io.netty:netty-transport-rxtx:jar:4.2.8.Final
-   io.netty:netty-transport-sctp:jar:4.2.8.Final
-   io.netty:netty-transport-udt:jar:4.2.8.Final
-   io.netty:netty-transport:jar:4.2.8.Final
-   io.reactivex.rxjava2:rxjava:jar:2.0.0
-   jakarta.activation:jakarta.activation-api:jar:1.2.1
-   jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2
-   javax.activation:javax.activation-api:jar:1.2.0
-   javax.annotation:javax.annotation-api:jar:1.3.2
-   javax.servlet.jsp:jsp-api:jar:2.1
-   javax.servlet:javax.servlet-api:jar:3.1.0
-   javax.validation:validation-api:jar:2.0.1.Final
-   javax.ws.rs:jsr311-api:jar:1.1.1
-   javax.xml.bind:jaxb-api:jar:2.3.1
-   net.lingala.zip4j:zip4j:jar:2.11.5
-   net.logstash.logback:logstash-logback-encoder:jar:9.0
-   net.sourceforge.jexcelapi:jxl:jar:2.6.12
-   nl.fountain:xelem:jar:3.1
-   org.apache.arrow:arrow-format:jar:14.0.0
-   org.apache.arrow:arrow-memory-core:jar:14.0.0
-   org.apache.arrow:arrow-memory-unsafe:jar:14.0.0
-   org.apache.arrow:arrow-vector:jar:14.0.0
-   org.apache.avro:avro:jar:1.12.1
-   org.apache.commons:commons-collections4:jar:4.5.0
-   org.apache.commons:commons-compress:jar:1.28.0
-   org.apache.commons:commons-configuration2:jar:2.12.0
-   org.apache.commons:commons-csv:jar:1.10.0
-   org.apache.commons:commons-lang3:jar:3.19.0
-   org.apache.commons:commons-math3:jar:3.6.1
-   org.apache.commons:commons-text:jar:1.14.0
-   org.apache.curator:curator-client:jar:5.2.0
-   org.apache.curator:curator-framework:jar:5.2.0
-   org.apache.curator:curator-recipes:jar:5.2.0
-   org.apache.fury:fury-core:jar:0.10.3
-   org.apache.fury:fury-format:jar:0.10.3
-   org.apache.hadoop.thirdparty:hadoop-shaded-guava:jar:1.4.0
-   org.apache.hadoop.thirdparty:hadoop-shaded-protobuf_3_25:jar:1.4.0
-   org.apache.hadoop:hadoop-annotations:jar:3.4.2
-   org.apache.hadoop:hadoop-auth:jar:3.4.2
-   org.apache.hadoop:hadoop-client:jar:3.4.2
-   org.apache.hadoop:hadoop-common:jar:3.4.2
-   org.apache.hadoop:hadoop-hdfs-client:jar:3.4.2
-   org.apache.hadoop:hadoop-mapreduce-client-common:jar:3.4.2
-   org.apache.hadoop:hadoop-mapreduce-client-core:jar:3.4.2
-   org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:3.4.2
-   org.apache.hadoop:hadoop-yarn-api:jar:3.4.2
-   org.apache.hadoop:hadoop-yarn-client:jar:3.4.2
-   org.apache.hadoop:hadoop-yarn-common:jar:3.4.2
-   org.apache.httpcomponents:httpclient:jar:4.5.13
-   org.apache.httpcomponents:httpcore:jar:4.4.13
-   org.apache.kerby:kerb-core:jar:2.0.3
-   org.apache.kerby:kerb-crypto:jar:2.0.3
-   org.apache.kerby:kerb-util:jar:2.0.3
-   org.apache.kerby:kerby-asn1:jar:2.0.3
-   org.apache.kerby:kerby-config:jar:2.0.3
-   org.apache.kerby:kerby-pkix:jar:2.0.3
-   org.apache.kerby:kerby-util:jar:2.0.3
-   org.apache.logging.log4j:log4j-1.2-api:jar:2.25.3
-   org.apache.logging.log4j:log4j-api:jar:2.25.3
-   org.apache.logging.log4j:log4j-core:jar:2.25.3
-   org.apache.logging.log4j:log4j-slf4j2-impl:jar:2.25.3
-   org.apache.parquet:parquet-avro:jar:1.16.0
-   org.apache.parquet:parquet-column:jar:1.16.0
-   org.apache.parquet:parquet-common:jar:1.16.0
-   org.apache.parquet:parquet-encoding:jar:1.16.0
-   org.apache.parquet:parquet-format-structures:jar:1.16.0
-   org.apache.parquet:parquet-hadoop:jar:1.16.0
-   org.apache.parquet:parquet-jackson:jar:1.16.0
-   org.apache.parquet:parquet-variant:jar:1.16.0
-   org.apache.pdfbox:fontbox:jar:2.0.31
-   org.apache.pdfbox:jbig2-imageio:jar:3.0.4
-   org.apache.pdfbox:pdfbox:jar:2.0.31
-   org.apache.poi:poi-ooxml-lite:jar:5.5.1
-   org.apache.poi:poi-ooxml:jar:5.5.1
-   org.apache.poi:poi-scratchpad:jar:5.5.1
-   org.apache.poi:poi:jar:5.5.1
-   org.apache.xmlbeans:xmlbeans:jar:5.3.0
-   org.bouncycastle:bcmail-jdk18on:jar:1.82
-   org.bouncycastle:bcpkix-jdk18on:jar:1.82
-   org.bouncycastle:bcprov-jdk18on:jar:1.82
-   org.bouncycastle:bcutil-jdk18on:jar:1.82
-   org.bytedeco:javacpp:jar:1.5.11
-   org.codehaus.woodstox:stax2-api:jar:4.2.2
-   org.eclipse.jetty.websocket:websocket-api:jar:9.4.57.v20241219
-   org.eclipse.jetty.websocket:websocket-client:jar:9.4.57.v20241219
-   org.eclipse.jetty.websocket:websocket-common:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-client:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-http:jar:12.1.4
-   org.eclipse.jetty:jetty-io:jar:12.1.4
-   org.eclipse.jetty:jetty-security:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-servlet:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-util-ajax:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-util:jar:12.1.4
-   org.eclipse.jetty:jetty-webapp:jar:9.4.57.v20241219
-   org.eclipse.jetty:jetty-xml:jar:12.1.4
-   org.javassist:javassist:jar:3.28.0-GA
-   org.jctools:jctools-core:jar:4.0.5
-   org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.8.21
-   org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.8.21
-   org.jetbrains.kotlin:kotlin-stdlib:jar:2.2.21
-   org.jetbrains:annotations:jar:13.0
-   org.jline:jline:jar:3.30.6
-   org.jspecify:jspecify:jar:1.0.0
-   org.locationtech.jts:jts-core:jar:1.20.0
-   org.python:jython-standalone:jar:2.7.4
-   org.reactivestreams:reactive-streams:jar:1.0.4
-   org.reflections:reflections:jar:0.10.2
-   org.scala-lang:scala-library:jar:2.12.8
-   org.slf4j:slf4j-api:jar:2.0.17
-   org.tensorflow:ndarray:jar:1.0.0
-   org.tensorflow:tensorflow-core-api:jar:1.1.0
-   org.tensorflow:tensorflow-core-native:jar:1.1.0
-   org.tensorflow:tensorflow-core-native:jar:linux-arm64:1.1.0
-   org.tensorflow:tensorflow-core-native:jar:linux-x86_64:1.1.0
-   org.tensorflow:tensorflow-core-native:jar:macosx-arm64:1.1.0
-   org.tensorflow:tensorflow-core-native:jar:windows-x86_64:1.1.0
-   org.tensorflow:tensorflow-core-platform:jar:1.1.0
-   org.xerial.snappy:snappy-java:jar:1.1.10.8
-   org.yaml:snakeyaml:jar:2.4
-   tools.jackson.core:jackson-core:jar:3.0.1
-   tools.jackson.core:jackson-databind:jar:3.0.1
+ch.qos.reload4j:reload4j:jar:1.2.22
+com.fasterxml.jackson.core:jackson-annotations:jar:2.19.1
+com.fasterxml.jackson.core:jackson-core:jar:2.20.1
+com.fasterxml.jackson.core:jackson-databind:jar:2.20.1
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.20.1
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.20.1
+com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:jar:2.12.7
+com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.12.7
+com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.12.7
+com.fasterxml.woodstox:woodstox-core:jar:5.4.0
+com.github.albfernandez:javadbf:jar:1.14.1
+com.github.jai-imageio:jai-imageio-core:jar:1.4.0
+com.github.jai-imageio:jai-imageio-jpeg2000:jar:1.4.0
+com.github.luben:zstd-jni:jar:1.5.7-3
+com.github.romualdrousseau:archery-commons:jar:1.0.46
+com.github.romualdrousseau:archery-csv:jar:1.0.46
+com.github.romualdrousseau:archery-dbf:jar:1.0.46
+com.github.romualdrousseau:archery-excel:jar:1.0.46
+com.github.romualdrousseau:archery-layex-parser:jar:1.0.46
+com.github.romualdrousseau:archery-net-classifier:jar:1.0.46
+com.github.romualdrousseau:archery-parquet:jar:1.0.46
+com.github.romualdrousseau:archery-pdf:jar:1.0.46
+com.github.romualdrousseau:archery:jar:1.0.46
+com.github.virtuald:curvesapi:jar:1.08
+com.google.code.findbugs:jsr305:jar:3.0.2
+com.google.code.gson:gson:jar:2.13.2
+com.google.errorprone:error_prone_annotations:jar:2.44.0
+com.google.flatbuffers:flatbuffers-java:jar:1.12.0
+com.google.guava:failureaccess:jar:1.0.3
+com.google.guava:guava:jar:33.5.0-jre
+com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava
+com.google.j2objc:j2objc-annotations:jar:3.1
+com.google.protobuf:protobuf-java:jar:4.33.1
+com.google.re2j:re2j:jar:1.1
+com.kjetland:mbknor-jackson-jsonschema_2.12:jar:1.0.34
+com.knuddels:jtokkit:jar:0.5.1
+com.nimbusds:nimbus-jose-jwt:jar:10.6
+com.squareup.okhttp3:okhttp:jar:4.12.0
+com.squareup.okio:okio-jvm:jar:3.16.3
+com.squareup.okio:okio:jar:3.16.3
+com.squareup.retrofit2:adapter-rxjava2:jar:2.9.0
+com.squareup.retrofit2:converter-jackson:jar:2.9.0
+com.squareup.retrofit2:retrofit:jar:2.9.0
+com.sun.jersey:jersey-client:jar:1.19.4
+com.sun.jersey:jersey-core:jar:1.19.4
+com.sun.jersey:jersey-servlet:jar:1.19.4
+com.theokanning.openai-gpt3-java:api:jar:0.18.2
+com.theokanning.openai-gpt3-java:client:jar:0.18.2
+com.theokanning.openai-gpt3-java:service:jar:0.18.2
+com.zaxxer:SparseBitSet:jar:1.3
+commons-cli:commons-cli:jar:1.11.0
+commons-codec:commons-codec:jar:1.20.0
+commons-io:commons-io:jar:2.21.0
+commons-logging:commons-logging:jar:1.3.5
+commons-net:commons-net:jar:3.9.0
+commons-pool:commons-pool:jar:1.6
+dnsjava:dnsjava:jar:3.6.3
+fr.neolegal:tabula:jar:1.0.12
+io.airlift:aircompressor:jar:2.0.2
+io.dropwizard.metrics:metrics-core:jar:3.2.4
+io.github.classgraph:classgraph:jar:4.8.184
+io.netty:netty-all:jar:4.2.8.Final
+io.netty:netty-buffer:jar:4.2.8.Final
+io.netty:netty-codec-base:jar:4.2.8.Final
+io.netty:netty-codec-classes-quic:jar:4.2.8.Final
+io.netty:netty-codec-compression:jar:4.2.8.Final
+io.netty:netty-codec-dns:jar:4.2.8.Final
+io.netty:netty-codec-haproxy:jar:4.2.8.Final
+io.netty:netty-codec-http2:jar:4.2.8.Final
+io.netty:netty-codec-http3:jar:4.2.8.Final
+io.netty:netty-codec-http:jar:4.2.8.Final
+io.netty:netty-codec-marshalling:jar:4.2.8.Final
+io.netty:netty-codec-memcache:jar:4.2.8.Final
+io.netty:netty-codec-mqtt:jar:4.2.8.Final
+io.netty:netty-codec-native-quic:jar:linux-aarch_64:4.2.8.Final
+io.netty:netty-codec-native-quic:jar:linux-x86_64:4.2.8.Final
+io.netty:netty-codec-native-quic:jar:osx-aarch_64:4.2.8.Final
+io.netty:netty-codec-native-quic:jar:osx-x86_64:4.2.8.Final
+io.netty:netty-codec-native-quic:jar:windows-x86_64:4.2.8.Final
+io.netty:netty-codec-protobuf:jar:4.2.8.Final
+io.netty:netty-codec-redis:jar:4.2.8.Final
+io.netty:netty-codec-smtp:jar:4.2.8.Final
+io.netty:netty-codec-socks:jar:4.2.8.Final
+io.netty:netty-codec-stomp:jar:4.2.8.Final
+io.netty:netty-codec-xml:jar:4.2.8.Final
+io.netty:netty-codec:jar:4.2.8.Final
+io.netty:netty-common:jar:4.2.8.Final
+io.netty:netty-handler-proxy:jar:4.2.8.Final
+io.netty:netty-handler-ssl-ocsp:jar:4.2.8.Final
+io.netty:netty-handler:jar:4.2.8.Final
+io.netty:netty-resolver-dns-classes-macos:jar:4.2.8.Final
+io.netty:netty-resolver-dns-native-macos:jar:osx-aarch_64:4.2.8.Final
+io.netty:netty-resolver-dns-native-macos:jar:osx-x86_64:4.2.8.Final
+io.netty:netty-resolver-dns:jar:4.2.8.Final
+io.netty:netty-resolver:jar:4.2.8.Final
+io.netty:netty-transport-classes-epoll:jar:4.2.8.Final
+io.netty:netty-transport-classes-io_uring:jar:4.2.8.Final
+io.netty:netty-transport-classes-kqueue:jar:4.2.8.Final
+io.netty:netty-transport-native-epoll:jar:4.2.8.Final
+io.netty:netty-transport-native-epoll:jar:linux-aarch_64:4.2.8.Final
+io.netty:netty-transport-native-epoll:jar:linux-riscv64:4.2.8.Final
+io.netty:netty-transport-native-epoll:jar:linux-x86_64:4.2.8.Final
+io.netty:netty-transport-native-io_uring:jar:linux-aarch_64:4.2.8.Final
+io.netty:netty-transport-native-io_uring:jar:linux-riscv64:4.2.8.Final
+io.netty:netty-transport-native-io_uring:jar:linux-x86_64:4.2.8.Final
+io.netty:netty-transport-native-kqueue:jar:osx-aarch_64:4.2.8.Final
+io.netty:netty-transport-native-kqueue:jar:osx-x86_64:4.2.8.Final
+io.netty:netty-transport-native-unix-common:jar:4.2.8.Final
+io.netty:netty-transport-rxtx:jar:4.2.8.Final
+io.netty:netty-transport-sctp:jar:4.2.8.Final
+io.netty:netty-transport-udt:jar:4.2.8.Final
+io.netty:netty-transport:jar:4.2.8.Final
+io.reactivex.rxjava2:rxjava:jar:2.0.0
+jakarta.activation:jakarta.activation-api:jar:1.2.1
+jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2
+javax.activation:javax.activation-api:jar:1.2.0
+javax.annotation:javax.annotation-api:jar:1.3.2
+javax.servlet.jsp:jsp-api:jar:2.1
+javax.servlet:javax.servlet-api:jar:3.1.0
+javax.validation:validation-api:jar:2.0.1.Final
+javax.ws.rs:jsr311-api:jar:1.1.1
+javax.xml.bind:jaxb-api:jar:2.3.1
+net.lingala.zip4j:zip4j:jar:2.11.5
+net.logstash.logback:logstash-logback-encoder:jar:9.0
+net.sourceforge.jexcelapi:jxl:jar:2.6.12
+org.apache.arrow:arrow-format:jar:14.0.0
+org.apache.arrow:arrow-memory-core:jar:14.0.0
+org.apache.arrow:arrow-memory-unsafe:jar:14.0.0
+org.apache.arrow:arrow-vector:jar:14.0.0
+org.apache.avro:avro:jar:1.12.1
+org.apache.commons:commons-collections4:jar:4.5.0
+org.apache.commons:commons-compress:jar:1.28.0
+org.apache.commons:commons-configuration2:jar:2.12.0
+org.apache.commons:commons-csv:jar:1.10.0
+org.apache.commons:commons-lang3:jar:3.19.0
+org.apache.commons:commons-math3:jar:3.6.1
+org.apache.commons:commons-text:jar:1.14.0
+org.apache.curator:curator-client:jar:5.2.0
+org.apache.curator:curator-framework:jar:5.2.0
+org.apache.curator:curator-recipes:jar:5.2.0
+org.apache.fury:fury-core:jar:0.10.3
+org.apache.fury:fury-extensions:jar:0.10.3
+org.apache.fury:fury-format:jar:0.10.3
+org.apache.hadoop.thirdparty:hadoop-shaded-guava:jar:1.4.0
+org.apache.hadoop.thirdparty:hadoop-shaded-protobuf_3_25:jar:1.4.0
+org.apache.hadoop:hadoop-annotations:jar:3.4.2
+org.apache.hadoop:hadoop-auth:jar:3.4.2
+org.apache.hadoop:hadoop-client:jar:3.4.2
+org.apache.hadoop:hadoop-common:jar:3.4.2
+org.apache.hadoop:hadoop-hdfs-client:jar:3.4.2
+org.apache.hadoop:hadoop-mapreduce-client-common:jar:3.4.2
+org.apache.hadoop:hadoop-mapreduce-client-core:jar:3.4.2
+org.apache.hadoop:hadoop-mapreduce-client-jobclient:jar:3.4.2
+org.apache.hadoop:hadoop-yarn-api:jar:3.4.2
+org.apache.hadoop:hadoop-yarn-client:jar:3.4.2
+org.apache.hadoop:hadoop-yarn-common:jar:3.4.2
+org.apache.httpcomponents:httpclient:jar:4.5.13
+org.apache.httpcomponents:httpcore:jar:4.4.13
+org.apache.kerby:kerb-core:jar:2.0.3
+org.apache.kerby:kerb-crypto:jar:2.0.3
+org.apache.kerby:kerb-util:jar:2.0.3
+org.apache.kerby:kerby-asn1:jar:2.0.3
+org.apache.kerby:kerby-config:jar:2.0.3
+org.apache.kerby:kerby-pkix:jar:2.0.3
+org.apache.kerby:kerby-util:jar:2.0.3
+org.apache.logging.log4j:log4j-1.2-api:jar:2.25.3
+org.apache.logging.log4j:log4j-api:jar:2.25.3
+org.apache.logging.log4j:log4j-core:jar:2.25.3
+org.apache.logging.log4j:log4j-slf4j2-impl:jar:2.25.3
+org.apache.parquet:parquet-avro:jar:1.16.0
+org.apache.parquet:parquet-column:jar:1.16.0
+org.apache.parquet:parquet-common:jar:1.16.0
+org.apache.parquet:parquet-encoding:jar:1.16.0
+org.apache.parquet:parquet-format-structures:jar:1.16.0
+org.apache.parquet:parquet-hadoop:jar:1.16.0
+org.apache.parquet:parquet-jackson:jar:1.16.0
+org.apache.parquet:parquet-variant:jar:1.16.0
+org.apache.pdfbox:fontbox:jar:2.0.31
+org.apache.pdfbox:jbig2-imageio:jar:3.0.4
+org.apache.pdfbox:pdfbox:jar:2.0.31
+org.apache.poi:poi-ooxml-lite:jar:5.5.1
+org.apache.poi:poi-ooxml:jar:5.5.1
+org.apache.poi:poi-scratchpad:jar:5.5.1
+org.apache.poi:poi:jar:5.5.1
+org.apache.xmlbeans:xmlbeans:jar:5.3.0
+org.bouncycastle:bcmail-jdk18on:jar:1.82
+org.bouncycastle:bcpkix-jdk18on:jar:1.82
+org.bouncycastle:bcprov-jdk18on:jar:1.82
+org.bouncycastle:bcutil-jdk18on:jar:1.82
+org.bytedeco:javacpp:jar:1.5.11
+org.codehaus.woodstox:stax2-api:jar:4.2.2
+org.eclipse.jetty.websocket:websocket-api:jar:9.4.57.v20241219
+org.eclipse.jetty.websocket:websocket-client:jar:9.4.57.v20241219
+org.eclipse.jetty.websocket:websocket-common:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-client:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-http:jar:12.1.4
+org.eclipse.jetty:jetty-io:jar:12.1.4
+org.eclipse.jetty:jetty-security:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-servlet:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-util-ajax:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-util:jar:12.1.4
+org.eclipse.jetty:jetty-webapp:jar:9.4.57.v20241219
+org.eclipse.jetty:jetty-xml:jar:12.1.4
+org.javassist:javassist:jar:3.28.0-GA
+org.jctools:jctools-core:jar:4.0.5
+org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.8.21
+org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.8.21
+org.jetbrains.kotlin:kotlin-stdlib:jar:2.2.21
+org.jetbrains:annotations:jar:13.0
+org.jline:jline:jar:3.30.6
+org.jspecify:jspecify:jar:1.0.0
+org.locationtech.jts:jts-core:jar:1.20.0
+org.python:jython-standalone:jar:2.7.4
+org.reactivestreams:reactive-streams:jar:1.0.4
+org.reflections:reflections:jar:0.10.2
+org.scala-lang:scala-library:jar:2.12.8
+org.slf4j:slf4j-api:jar:2.0.17
+org.tensorflow:ndarray:jar:1.0.0
+org.tensorflow:tensorflow-core-api:jar:1.1.0
+org.tensorflow:tensorflow-core-native:jar:1.1.0
+org.tensorflow:tensorflow-core-native:jar:linux-arm64:1.1.0
+org.tensorflow:tensorflow-core-native:jar:linux-x86_64:1.1.0
+org.tensorflow:tensorflow-core-native:jar:macosx-arm64:1.1.0
+org.tensorflow:tensorflow-core-native:jar:windows-x86_64:1.1.0
+org.tensorflow:tensorflow-core-platform:jar:1.1.0
+org.xerial.snappy:snappy-java:jar:1.1.10.8
+org.yaml:snakeyaml:jar:2.4
+tools.jackson.core:jackson-core:jar:3.0.1
+tools.jackson.core:jackson-databind:jar:3.0.1

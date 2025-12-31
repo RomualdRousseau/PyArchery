@@ -52,7 +52,7 @@ def _load_checksums(checksum_path: str | os.PathLike[str]) -> dict[str, str]:
             if not line or line.startswith("#"):
                 continue
             try:
-                checksum, filename = line.split(None, 1)
+                checksum, filename = line.split(":", 1)
                 checksums[filename] = checksum
             except ValueError:
                 logger.warning("Ignoring malformed checksum line: %s", line)
